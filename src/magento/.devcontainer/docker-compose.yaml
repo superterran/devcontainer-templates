@@ -1,0 +1,40 @@
+version: '3.8'
+services: 
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    command: sleep infinity
+    volumes:
+      - ../..:/workspaces:cached
+      - ..:/var/www/html
+    environment:
+      SKIP_SETUP: ${SKIP_SETUP}
+      XDEBUG_MODE: ${XDEBUG_MODE}
+    network_mode: service:db
+  db:
+    image: mysql:8.0-oracle
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: magento
+      MYSQL_DATABASE: magento
+      MYSQL_USER: magento
+      MYSQL_PASSWORD: magento
+   redis:
+    image: redis:latest
+    network_mode: service:db
+  ampq:
+    image: rabbitmq:latest
+    network_mode: service:db
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   network_mode: service:db  
+  elasticsearch:
+    image: elasticsearch:7.10.1
+    network_mode: service:db
+    environment:
+      - discovery.type=single-node
+volumes:
+  db-data:
+  magento:

@@ -1,8 +1,8 @@
 {
-    "id": "color",
+    "id": "magento",
     "version": "1.0.0",
-    "name": "My Favorite Color",
-    "description": "A Template to remind you of your favorite color",
+    "name": "Adobe Commerce or Magento Open Source",
+    "description": "Runs Adobe Commerce or Magento Open Source in a suitable docker composition",
     "documentationURL": "https://github.com/devcontainers/template-starter/tree/main/src/color",
     "licenseURL": "https://github.com/devcontainers/template-starter/blob/main/LICENSE",
     "options": {
@@ -15,15 +15,22 @@
             ],
             "default": "bullseye"
         },
-        "favorite": {
+        "phpVersion": {
             "type": "string",
-            "description": "Choose your favorite color.",
+            "description": "PHP version to run in the app container:",
             "proposals": [
-                "red",
-                "gold",
-                "green"
+                "8.2",
+                "8.1"                
             ],
-            "default": "red"
+            "default": "8.2"
+        },
+        "composerVersion": {
+            "type": "string",
+            "description": "composer version to add to the app container:",
+            "proposals": [
+                "2.1.12"            
+            ],
+            "default": "2.1.12"
         }
     },
     "platforms": [

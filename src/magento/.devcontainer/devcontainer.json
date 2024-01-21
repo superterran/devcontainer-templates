@@ -1,0 +1,24 @@
+{
+	"name": "Nalli",
+
+	"dockerComposeFile": "docker-compose.yaml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"shutdownAction": "stopCompose",
+	
+
+	"containerEnv": {
+		"AUTO_WORKSPACE_FOLDER": "/workspaces/${localWorkspaceFolderBasename}",
+		"SKIP_SETUP": "false",
+		"XDEBUG_MODE": "off"
+	},
+
+	"forwardPorts": [8080],
+
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+	],
+	
+   "postStartCommand": ".devcontainer/commerce.sh"
+
+}
